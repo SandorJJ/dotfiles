@@ -1,0 +1,10 @@
+# Theme
+theme = TokyoNight Moon
+
+# Keybinds
+keybind = clear
+keybind = ctrl+shift+r=reload_config
+
+# Popups
+confirm-close-surface = false
+resize-overlay = never
