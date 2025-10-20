@@ -1,0 +1,46 @@
+version = 3
+enable_cursor_positioning = true
+final_space = false
+
+[[blocks]]
+  type = "prompt"
+  alignment = "left"
+  newline = true
+
+  [[blocks.segments]]
+    type = "path"
+    style = "plain"
+    background = "transparent"
+    foreground = "blue"
+    template = "{{ .Path }}"
+
+    [blocks.segments.properties]
+      style = "full"
+
+[[blocks]]
+  type = "prompt"
+  alignment = "left"
+  newline = true
+
+  [[blocks.segments]]
+    type = "text"
+    style = "plain"
+    background = "transparent"
+    foreground = "blue"
+    template = " "
+
+[transient_prompt]
+  background = "transparent"
+  foreground = "lightblue"
+  template = " "
+
+[secondary_prompt]
+  background = "transparent"
+  foreground = "lightblue"
+  template = " "
+
+[upgrade]
+  source = "cdn"
+  interval = "168h"
+  notice = true
+  auto = false

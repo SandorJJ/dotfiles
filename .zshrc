@@ -1,6 +1,12 @@
 ### Environment Variables ###
 export PATH=$PATH:/home/sandorjj/.local/bin
 export EDITOR="nvim"
+export LS_COLORS="fi=0:di=01;34:ln=36:ex=32"
+
+### Aliases ###
+alias ls="ls --color"
+alias ll="ls -lah"
+alias c="clear"
 
 ### Zinit ###
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -12,8 +18,6 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
 fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
@@ -22,6 +26,32 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### Plugins ###
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 
-zinit ice depth=1 ; zinit light jeffreytse/zsh-vi-mode
+zinit light zsh-users/zsh-autosuggestions
+zvm_after_init_commands+=("bindkey \"^y\" autosuggest-accept")
+
+zinit light zsh-users/zsh-syntax-highlighting
+
+zinit light zsh-users/zsh-completions
+autoload -U compinit && compinit
+zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
+zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
+
+### History ###
+HISTSIZE=1000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+zvm_after_init_commands+=("bindkey \"^p\" history-search-backward")
+zvm_after_init_commands+=("bindkey \"^n\" history-search-forward")
+
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
