@@ -55,3 +55,4 @@ zvm_after_init_commands+=("bindkey \"^p\" history-search-backward")
 zvm_after_init_commands+=("bindkey \"^n\" history-search-forward")
 
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
+eval "$(zoxide init --cmd cd zsh)"
