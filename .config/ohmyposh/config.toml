@@ -42,5 +42,5 @@ final_space = false
 [upgrade]
   source = "cdn"
   interval = "168h"
-  notice = true
+  notice = false
   auto = false
